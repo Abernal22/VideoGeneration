@@ -1,42 +1,43 @@
 import torch
 
-from dataset import VideoDataset
+from dataset import UCF101Dataset
 from model import VideoCNN
 
 
 def main():
-    dataset = VideoDataset(
-        video_dir="data",
+    dataset = UCF101Dataset(
+        video_dir="data/UCF-101",
+        split_file="data/splits/trainlist01.txt",
         num_frames=16,
         image_size=112,
     )
 
-    video, filename = dataset[0]
+    video, label, class_name = dataset[0]
 
-    print("Input video:", filename)
+    print("Video class:", class_name)
+    print("Ground-truth label:", label)
     print("Original shape:", video.shape)
 
     # Add batch dimension.
     video = video.unsqueeze(0)
 
-    # Convert:
-    #
     # [batch, frames, channels, height, width]
-    #
-    # to:
-    #
+    # ->
     # [batch, channels, frames, height, width]
-
     video = video.permute(0, 2, 1, 3, 4)
 
     print("Model input shape:", video.shape)
 
-    model = VideoCNN()
+    model = VideoCNN(num_classes=101)
 
     prediction = model(video)
 
     print("Prediction shape:", prediction.shape)
-    print("Prediction:", prediction)
+
+    # Find the class with the largest score.
+    predicted_class = prediction.argmax(dim=1).item()
+
+    print("Predicted class index:", predicted_class)
 
 
 if __name__ == "__main__":
