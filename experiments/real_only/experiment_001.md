@@ -190,6 +190,73 @@ Validation Loss:
 Validation Accuracy:
 0.0000
 
+## Experiment 002 — 1,000 Video Development Run
+
+### Configuration
+
+Dataset:
+UCF101 trainlist01
+
+Videos:
+1000
+
+Training videos:
+900
+
+Validation videos:
+100
+
+Frames per video:
+16
+
+Resolution:
+112 x 112
+
+Batch size:
+2
+
+Epochs:
+3
+
+Learning rate:
+0.001
+
+Optimizer:
+Adam
+
+Model:
+Custom 3D CNN
+
+Device:
+CPU
+
+### Results
+
+| Epoch | Train Loss | Train Accuracy | Val Loss | Val Accuracy |
+|------:|-----------:|---------------:|---------:|-------------:|
+| 1 | 4.6326 | 0.0144 | 4.5914 | 0.0100 |
+| 2 | 4.6109 | 0.0178 | 4.6079 | 0.0100 |
+| 3 | 4.5944 | 0.0167 | 4.6491 | 0.0000 |
+
+### Observation
+
+The training loss decreased across the three epochs, indicating that
+the model was able to optimize successfully. However, classification
+accuracy remained close to the approximately 0.99% chance level
+associated with 101 classes.
+
+The experiment therefore validates the training pipeline but does not
+yet provide a strong video-classification baseline.
+
+### Next Step
+
+Evaluate a standard video-classification architecture and establish
+an official UCF101 train/test evaluation protocol.
+
+
+
+
+
 ## Interpretation
 
 This experiment was intended as an engineering smoke test rather than
