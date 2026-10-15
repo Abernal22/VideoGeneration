@@ -1,0 +1,33 @@
+{
+  "architecture": "R3D-18",
+  "pretrained_weights": "R3D_18_Weights.KINETICS400_V1",
+  "dataset": "UCF101",
+  "split": "random development split from trainlist01.txt",
+  "device": "cpu",
+  "config": {
+    "samples": 200,
+    "epochs": 2,
+    "batch_size": 2,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "threads": 2
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 5.344037267896864,
+      "train_accuracy": 0.06666666666666667,
+      "val_loss": 4.771363592147827,
+      "val_accuracy": 0.1,
+      "seconds": 79.06
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.3032820224761963,
+      "train_accuracy": 0.6277777777777778,
+      "val_loss": 4.144958138465881,
+      "val_accuracy": 0.25,
+      "seconds": 82.86
+    }
+  ]
+}
